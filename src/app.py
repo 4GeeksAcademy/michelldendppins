@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User
+from models import db, Planets, Characters, Vehicles, Starships, Species
 #from models import Person
 
 app = Flask(__name__)
@@ -36,14 +36,42 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/user', methods=['GET'])
-def handle_hello():
 
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
 
-    return jsonify(response_body), 200
+
+@app.route('/planets', methods=['GET'])
+def get_planets():
+    all_planets = Planets.query.all()
+    all_planets_serialize = [planet.serialize() for planet in all_planets]    
+    return jsonify(all_planets_serialize), 200
+
+
+@app.route('/characters', methods=['GET'])
+def get_characters():
+    all_characters = Characters.query.all()
+    all_characters_serialize = [character.serialize() for character in all_characters]    
+    return jsonify(all_characters_serialize), 200
+
+@app.route('/vehicles', methods=['GET'])
+def get_vehicles():
+    all_vehicles = Vehicles.query.all()
+    all_vehicles_serialize = [vehicle.serialize() for vehicle in all_vehicles]    
+    return jsonify(all_vehicles_serialize), 200
+
+
+@app.route('/starships', methods=['GET'])
+def get_starships():
+    all_starships = Starships.query.all()
+    all_starships_serialize = [starship.serialize() for starship in all_starships]    
+    return jsonify(all_starships_serialize), 200
+
+@app.route('/species', methods=['GET'])
+def get_species():
+    all_species = Species.query.all()
+    all_species_serialize = [specie.serialize() for specie in all_species]    
+    return jsonify(all_species_serialize), 200
+
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
