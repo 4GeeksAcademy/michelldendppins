@@ -26,11 +26,9 @@ class Characters(db.Model):
          return '<Characters %r>' % self.name 
 
     def serialize(self):
-
         return {
             "id": self.id,
             "name": self.name,
-            # do not serialize the password, its a security breach
         }    
     
 class Vehicles(db.Model):
@@ -42,7 +40,6 @@ class Vehicles(db.Model):
          return '<Vehicles %r>' % self.name 
 
     def serialize(self):
-
         return {
             "id": self.id,
             "name": self.name,
@@ -58,11 +55,9 @@ class Starships(db.Model):
          return '<Starships %r>' % self.name 
 
     def serialize(self):
-
         return {
             "id": self.id,
             "name": self.name,
-            # do not serialize the password, its a security breach
         }        
     
 class Species(db.Model):
@@ -74,9 +69,9 @@ class Species(db.Model):
          return '<Species %r>' % self.name 
 
     def serialize(self):
-
         return {
             "id": self.id,
             "name": self.name,
-            # do not serialize the password, its a security breach
         }     
+    
+    
